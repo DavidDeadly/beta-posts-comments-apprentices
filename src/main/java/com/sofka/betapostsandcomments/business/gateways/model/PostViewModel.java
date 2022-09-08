@@ -1,7 +1,5 @@
 package com.sofka.betapostsandcomments.business.gateways.model;
 
-import org.springframework.data.mongodb.core.mapping.MongoId;
-
 import java.util.ArrayList;
 import java.util.List;
 

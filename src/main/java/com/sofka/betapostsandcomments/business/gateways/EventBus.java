@@ -1,9 +1,7 @@
 package com.sofka.betapostsandcomments.business.gateways;
 
-import co.com.sofka.domain.generic.DomainEvent;
-
 public interface EventBus {
-    void publish(DomainEvent event);
+    <M> void publish(M model, String routingKey);
 
     void publishError(Throwable errorEvent);
 }

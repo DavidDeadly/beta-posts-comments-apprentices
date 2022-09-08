@@ -1,9 +1,6 @@
 package com.sofka.betapostsandcomments.business.gateways.model;
 
-import org.springframework.data.mongodb.core.mapping.MongoId;
-
 public class CommentViewModel {
-    @MongoId
     private String id;
     private String postId;
     private String author;

@@ -1,8 +1,8 @@
 package com.sofka.betapostsandcomments.application.adapters.bus;
 
 
-import co.com.sofka.domain.generic.DomainEvent;
 import com.google.gson.Gson;
+import com.sofka.betapostsandcomments.application.config.RabbitMqConfig;
 import com.sofka.betapostsandcomments.business.gateways.EventBus;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
@@ -16,15 +16,15 @@ public class RabbitMqEventBus implements EventBus {
         this.rabbitTemplate = rabbitTemplate;
     }
 
+
     @Override
-    public void publish(DomainEvent event) {
-        var notification = new Notification(
-                event.getClass().getTypeName(),
-                gson.toJson(event)
-        );
+    public <M> void publish(M model, String routingKey) {
         //Find a way to send this notification through the predefined queues in the rabbitMq configuration,
         //To that specific exchange and queues bases on the type of event
-
+        rabbitTemplate.convertAndSend(
+                RabbitMqConfig.EXCHANGE, routingKey,
+                gson.toJson(model).getBytes()
+        );
     }
 
     @Override
