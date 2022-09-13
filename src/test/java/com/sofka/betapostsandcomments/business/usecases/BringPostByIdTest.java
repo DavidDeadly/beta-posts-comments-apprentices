@@ -30,7 +30,7 @@ class BringPostByIdTest {
   }
 
   @Test
-  void bringAllPostsUseCase() {
+  void bringPostByIdTest() {
     final String POST_ID = "36126321";
     final String AUTHOR = "DavidDeadly";
     final String TITLE = "Days with no end";
