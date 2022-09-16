@@ -1,9 +1,11 @@
 package com.sofka.betapostsandcomments.application.adapters.bus;
 
 import com.google.gson.Gson;
+import lombok.ToString;
 
 import java.time.Instant;
 
+@ToString
 public class Notification {
     private final String type;
     private final String body;

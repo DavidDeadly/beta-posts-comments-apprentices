@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import com.sofka.betapostsandcomments.business.gateways.DomainViewRepository;
 import com.sofka.betapostsandcomments.business.gateways.model.CommentViewModel;
 import com.sofka.betapostsandcomments.business.gateways.model.PostViewModel;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -14,6 +15,7 @@ import reactor.core.publisher.Mono;
 
 
 @Repository
+@Slf4j
 public class MongoViewRepository implements DomainViewRepository {
     private final ReactiveMongoTemplate template;
 
@@ -40,6 +42,7 @@ public class MongoViewRepository implements DomainViewRepository {
     @Override
     public Mono<PostViewModel> saveNewPost(PostViewModel post) {
         /** make the implementation, using the template, to save a post*/
+        log.info("[Post View model creation]: " + post);
         return template.save(post);
     }
 
@@ -52,7 +55,12 @@ public class MongoViewRepository implements DomainViewRepository {
             Mono.just(comment)
             .flatMap(com -> findByAggregateId(com.getPostId()))
             .flatMap(postViewModel -> {
+                log.info("[Comment View model creation]: " + comment);
+
                 postViewModel.getComments().add(comment);
+
+                log.info("[Comment added to post]");
+
                 return template.save(postViewModel);
             });
     }

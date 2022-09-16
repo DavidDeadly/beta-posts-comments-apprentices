@@ -1,7 +1,9 @@
 package com.sofka.betapostsandcomments.domain.events;
 
 import co.com.sofka.domain.generic.DomainEvent;
+import lombok.ToString;
 
+@ToString
 public class CommentAdded extends DomainEvent {
 
     private String commentID;

@@ -1,5 +1,8 @@
 package com.sofka.betapostsandcomments.business.gateways.model;
 
+import lombok.ToString;
+
+@ToString
 public class CommentViewModel {
     private String id;
     private String postId;

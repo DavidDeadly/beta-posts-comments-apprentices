@@ -2,6 +2,7 @@ package com.sofka.betapostsandcomments.application.config;
 
 
 import com.sofka.betapostsandcomments.application.handlers.QueueHandler;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
@@ -53,7 +54,6 @@ public class RabbitMqConfig {
 
     @RabbitListener(queues = GENERAL_QUEUE)
     public void listenToGeneralQueue(String received){
-        /**Starting point*/
         handler.accept(received);
     }
 

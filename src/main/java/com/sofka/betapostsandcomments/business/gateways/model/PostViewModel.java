@@ -1,8 +1,11 @@
 package com.sofka.betapostsandcomments.business.gateways.model;
 
+import lombok.ToString;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@ToString
 public class PostViewModel {
     private String id;
     private String postID;
